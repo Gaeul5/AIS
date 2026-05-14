@@ -1,8 +1,13 @@
 import os
+import pathlib
 from openai import OpenAI
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
-load_dotenv(find_dotenv(usecwd=True))
+# api.py 위치에서 상위로 올라가며 .env 탐색 (실행 위치와 무관하게 동작)
+for _parent in pathlib.Path(__file__).resolve().parents:
+    if (_parent / '.env').exists():
+        load_dotenv(_parent / '.env')
+        break
 client = OpenAI(
     api_key=os.getenv("GROQ_API_KEY"),
     base_url="https://api.groq.com/openai/v1",
