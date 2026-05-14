@@ -26,8 +26,12 @@ from utils.data import PROBLEMS, FEW_SHOT_EXAMPLES
 
 # =====================
 # 여기를 수정하세요
-PROBLEM_IDX = 4  # 0~4
-COT_TRIGGER = "Let's think step by step."
+PROBLEM_IDX = 3  # 0~4
+COT_TRIGGERS = [
+    "Let's think step by step.",
+    "Think carefully.",
+    "단계별로 생각해보자.",
+]
 # =====================
 
 problem = PROBLEMS[PROBLEM_IDX]
@@ -60,5 +64,6 @@ if __name__ == "__main__":
     print(f"\n정답: {problem['answer']}")
 
     print_result("Zero-shot", q, zero_shot(q))
-    print_result(f"Zero-shot CoT ({COT_TRIGGER})", q, zero_shot_cot(q, COT_TRIGGER))
+    for trigger in COT_TRIGGERS:
+        print_result(f"Zero-shot CoT ({trigger})", q, zero_shot_cot(q, trigger))
     print_result("Few-shot CoT", q, few_shot_cot(q, FEW_SHOT_EXAMPLES))
