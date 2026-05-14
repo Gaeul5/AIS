@@ -5,7 +5,7 @@ Reference: Wang et al. (2022) "Self-Consistency Improves Chain of Thought Reason
 https://arxiv.org/abs/2203.11171
 
 [실험 목표]
-동일한 문제를 여러 번 풀게 하고 가장 많이 나온 답을 채택하는 Self-Consistency 확인해보기. 
+동일한 문제를 여러 번 풀게 하고 가장 많이 나온 답을 채택하는 Self-Consistency 확인해보기.
 단일 CoT 대비 얼마나 안정적인지 확인합니다.
 
 [과제]
@@ -27,8 +27,8 @@ from utils.data import PROBLEMS, FEW_SHOT_EXAMPLES
 
 # =====================
 # 여기를 수정하세요
-PROBLEM_IDX = 2  # 0~4
-N_SAMPLES = 10    # 샘플링 횟수 (많을수록 API 비용 증가)
+PROBLEM_IDX = 0   # 0~4  (0번: 시계 각도 - Self-Consistency 효과가 가장 뚜렷함)
+N_SAMPLES = 7     # 샘플링 횟수 (홀수 권장, 많을수록 API 비용 증가)
 # =====================
 
 problem = PROBLEMS[PROBLEM_IDX]
